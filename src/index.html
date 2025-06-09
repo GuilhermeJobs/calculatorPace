@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Corredor</title>
+    
+    <!-- Fonte do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilo CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+    <h1>Saiba seu pace e velocidade média baseado no tempo,<br>ou tempo total e velocidade média baseado no seu pace</h1>
+</header>
+
+    <main class="calculator-container">
+        <section class="calculator">
+            <h2>Calculadora de Corrida</h2>
+            <p class="subtitle">Planeje seu treino com precisão.</p>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'calcPace')">Calcular Pace</button>
+            <button class="tab-button" onclick="openTab(event, 'calcTime')">Calcular Tempo</button>
+        </div>
+
+        <!-- Aba para Calcular o Pace -->
+        <div id="calcPace" class="tab-content active">
+            <form id="formCalcPace" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="distance1">Distância</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="distance1" placeholder="Ex: 10" step="any" min="0.1">
+                         <span class="unit">km</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Tempo Total</label>
+                    <div class="input-group">
+                        <input type="number" id="hours" placeholder="Horas" min="0" max="23">
+                        <input type="number" id="minutes" placeholder="Min" min="0" max="59">
+                        <input type="number" id="seconds" placeholder="Seg" min="0" max="59">
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="calculate-btn" onclick="calculatePace()">Calcular</button>
+                    <button type="button" class="clear-btn" onclick="clearFields('formCalcPace')">Limpar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Aba para Calcular o Tempo -->
+        <div id="calcTime" class="tab-content">
+            <form id="formCalcTime" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="distance2">Distância</label>
+                     <div class="input-wrapper">
+                        <input type="number" id="distance2" placeholder="Ex: 5" step="any" min="0.1">
+                         <span class="unit">km</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Pace (por km)</label>
+                    <div class="input-group">
+                        <input type="number" id="paceMinutes" placeholder="Min" min="0" max="59">
+                        <input type="number" id="paceSeconds" placeholder="Seg" min="0" max="59">
+                    </div>
+                </div>
+                 <div class="button-group">
+                    <button type="button" class="calculate-btn" onclick="calculateTime()">Calcular</button>
+                    <button type="button" class="clear-btn" onclick="clearFields('formCalcTime')">Limpar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Seção de Resultados -->
+        <div id="result-section">
+            <h2>Resumo da Corrida</h2>
+            <div class="result-grid">
+                <div class="result-item">
+                    <span class="label">Distância</span>
+                    <span id="resultDistance" class="value">-- km</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Tempo Total</span>
+                    <span id="resultTime" class="value">--:--:--</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Pace</span>
+                    <span id="resultPace" class="value">--:-- min/km</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Velocidade Média</span>
+                    <span id="resultSpeed" class="value">-- km/h</span>
+                </div>
+            </div>
+        </div>
+        
+        <p id="error-message"></p>
+
+    </main>
+
+    <!-- Link para o seu arquivo de script JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
